@@ -1,3 +1,7 @@
 import numpy as np
 
-print(np.zeros(3, dtype=np.int32) - 1)
+x = np.arange(6).reshape((2, 3))
+
+print(x)
+
+print(x.transpose())

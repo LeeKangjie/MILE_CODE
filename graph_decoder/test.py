@@ -10,6 +10,7 @@ from keras.models import Model
 import keras.backend as K
 from keract import get_activations
 import tensorflow as tf
+from sklearn.cluster import KMeans
 
 x = np.loadtxt('./wine.txt', dtype='float', delimiter=',', usecols=list(range(1, 14)))
 labels = np.loadtxt('./wine.txt', dtype='float', delimiter=',', usecols=(0,))
@@ -29,16 +30,19 @@ print('v.shape: ', v.shape)
 # # Compute the rbf (gaussian) kernel between X and Y:
 # # K(x, y) = exp(-gamma ||x-y||^2)
 # xtrain = pairwise.rbf_kernel(x, x, gamma=1.0/(2*490))
+
 xtrain = pairwise.cosine_similarity(x, x)
 print(xtrain)
 print('xtrain.shape: ', xtrain.shape)
 
 D = np.diag(1.0 / np.sqrt(xtrain.sum(axis=1)))
+
+print('D:', D)
 nxtrain = D.dot(xtrain).dot(D)
 
 # nxtrain = xtrain
 
-print(nxtrain)
+print("nxtrain:", nxtrain)
 print(nxtrain.shape)
 
 # Model Define
@@ -111,8 +115,6 @@ mm.summary()
 X = mm.predict(nxtrain)
 
 print("X's shape: ", X.shape)
-
-from sklearn.cluster import KMeans
 
 kmeans_sae = KMeans(n_clusters=3, init='random', random_state=None, max_iter=500).fit(X)
 
