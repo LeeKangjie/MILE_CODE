@@ -111,9 +111,9 @@ TModel.compile(optimizer=Adam(lr=0.005, decay=1e-2), loss=sae_square_loss(beta=0
 TModel.fit(nxtrain, nxtrain, nb_epoch=100, batch_size=2, verbose=2)
 
 mm = Model(input=TModel.input, output=TModel.get_layer('embed').output)
+print("mm.summary()")
 mm.summary()
 X = mm.predict(nxtrain)
-
 print("X's shape: ", X.shape)
 
 kmeans_sae = KMeans(n_clusters=3, init='random', random_state=None, max_iter=500).fit(X)
