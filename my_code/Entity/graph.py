@@ -1,3 +1,4 @@
+import math
 import numpy as np
 
 
@@ -25,9 +26,12 @@ class Graph(object):
 
 	# 计算图的归一化拉普拉斯矩阵
 	def get_nor_lap_mat(self):
-		return None
-
-	# TODO 未完成归一化拉普拉斯矩阵的计算
+		for i in range(self.node_num):
+			for j in range(self.node_num):
+				if i == j and self.degree_mat[i][i] != 0:
+					self.nor_lap_mat[i][j] = 1
+				elif i != j and self.adj_mat[i][j] == 1:
+					self.nor_lap_mat[i][j] = -(1.0 / math.sqrt(self.degree_mat[i][i] * self.degree_mat[j][j]))
 
 	def __str__(self):
 		return "graph size:\n node_number: %d\t edge_number: %d" % (self.node_num, self.edge_num)
