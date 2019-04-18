@@ -1,3 +1,6 @@
+from Entity.graph import Graph
+import numpy as np
+
 def coarsen(origin_graph, times=3):
 	list = []
 	list.append(origin_graph)
@@ -9,5 +12,10 @@ def coarsen(origin_graph, times=3):
 
 def get_coarsen_graph(graph):
 	new_graph = None
+	adj = graph.adj_mat
+	mapper = {}
+	for i in graph.node_num:
+		mapper[i] = i
+
 
 	return new_graph
