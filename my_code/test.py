@@ -10,3 +10,5 @@ a[1][1] = 4
 print(a)
 print(np.sum(a, axis=0))
 print(np.sum(a, axis=1))
+for i in range(1, 14):
+	print(i)

@@ -1,15 +1,11 @@
 import numpy as np
 import sklearn.metrics.pairwise as pairwise
-from sklearn import preprocessing
-import keras
-from keras.models import Sequential
-from keras.layers import Input, Dense, Activation, Dropout, Activation
-from keras.optimizers import Adam, Nadam, RMSprop, Adadelta
-from keras import regularizers
-from keras.models import Model
-import keras.backend as K
-from keract import get_activations
 import tensorflow as tf
+from keras.layers import Dense
+from keras.models import Model
+from keras.models import Sequential
+from keras.optimizers import Adam
+from sklearn import preprocessing
 from sklearn.cluster import KMeans
 
 x = np.loadtxt('./wine.txt', dtype='float', delimiter=',', usecols=list(range(1, 14)))
